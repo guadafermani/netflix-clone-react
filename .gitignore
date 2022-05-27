@@ -61,3 +61,6 @@ sketch
 
 # Ignore code-workspaces
 *.code-workspace
+
+# Ignore API key
+apiKey.js
