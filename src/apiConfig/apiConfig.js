@@ -1,19 +1,22 @@
-export const tmdb = {
+import API_KEY from "./apiKey";
+
+const tmdb = {
     urlBase: "https://api.themoviedb.org/3",
+    apiKey: `?api_key=${API_KEY}`,
     entity: {
         // Movies
         popularMovies: "/movie/popular",
         topRatedMovies: "/movie/top_rated",
         latestMovies: "/movie/latest",
         movieUpcoming: "/movie/upcoming",
-        movieById: "/movie/",
+        movieById: "/movie",
         // TV
         popularTv: "/tv/popular",
         topRatedTv: "/tv/top_rated",
         latestTv: "/tv/latest",
-        tvById: "/tv/",
+        tvById: "/tv",
     },
-    video: "/video/",
+    video: "/videos",
     language: {
         en: "&language=en-US",
         es: "&language=es-ES",
@@ -32,3 +35,5 @@ export const tmdb = {
         * TODO: add lists to create my list.
       */
 }
+
+export default tmdb;
