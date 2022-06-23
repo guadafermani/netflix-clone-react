@@ -1,12 +1,12 @@
 import Layout from "./Components/Layout/Layout";
-import Home from "./Pages/Homepage";
+import Homepage from "./Pages/Homepage";
 
 function App() {
   return (
     <div className="App">
       <>
         <Layout>
-          <Home />
+          <Homepage />
         </Layout>
       </>
     </div>

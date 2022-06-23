@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "../Components/Banner/Banner";
 import Carousel from "../Components/Carousel/Carousel";
 
-const Home = () => {
+const Homepage = () => {
   return (
     <div>
       <Banner />
@@ -14,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Homepage;
