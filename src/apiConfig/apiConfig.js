@@ -34,6 +34,34 @@ const tmdb = {
       /**
         * TODO: add lists to create my list.
       */
-}
+};
+
+export const apiQuality = {
+  posterSmall: "posterSmall",
+  posterMedium: "posterMedium",
+  posterLarge: "posterLarge",
+  backdropSmall: "backdropSmall",
+  backdropMedium: "backdropMedium",
+  backdropLarge: "backdropLarge",
+};
+
+export const apiEntity = {
+  // Movies
+  popularMovies: "popularMovies",
+  topRatedMovies: "topRatedMovies",
+  latestMovies: "latestMovies",
+  movieUpcoming: "movieUpcoming",
+  movieById: "movieById",
+  // TV
+  popularTv: "popularTv",
+  topRatedTv: "topRatedTv",
+  latestTv: "latestTv",
+  tvById: "tvById",
+};
+
+export const apiLanguage = {
+  english: "en",
+  spanish: "es",
+};
 
 export default tmdb;

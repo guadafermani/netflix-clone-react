@@ -1,15 +1,23 @@
 import React from "react";
 import styles from "./Banner.module.css";
-import Video from "./hooks/Video";
+import useBanner from "./hooks/useBanner";
+import Video from "./hooks/useVideo";
 
 const Banner = () => {
-        /**
-        * TODO: useApi
-      */
+  const [bannerVideos, bannerImage, isLoading] = useBanner();
+
   return (
-    <div className={styles.banner_container}>
-      <Video ids={["oImEeiCiYTk", "Rp7YtN_094I"]}/>
-      {/* <Video ids={["F4wgN8IMf3Q", "8koye8fa4CA", "Rp7YtN_094I"]}/> */}
+    <div
+      className={`${styles.banner_container}`}
+      style={
+        isLoading || bannerVideos.length !== 0
+          ? { backgroundImage: "none" }
+          : {
+              backgroundImage: `url(${bannerImage})`,
+            }
+      }
+    >
+      <Video ids={bannerVideos} />
       <div className={styles.banner_gradient}>
         <div>
           <div style={{ height: "350px" }}></div>
