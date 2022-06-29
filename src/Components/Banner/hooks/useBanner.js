@@ -9,10 +9,10 @@ import useApi from "../../../hooks/useApi";
 import { randomIndex } from "../../../utils/utils";
 
 const useBanner = () => {
-  const [movies, error, isLoading, language] = useApi(apiEntity.popularMovies);
+  const [movies, isLoading, error] = useApi(apiEntity.popularMovies);
   const [bannerImage, setBannerImage] = useState(null);
   const [bannerVideos, setBannerVideos] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const backgroundImage = async (movie) => {
     const res = await apiBuilder.tryGetImage(
@@ -23,42 +23,62 @@ const useBanner = () => {
   };
 
   const movieVideos = async (movie) => {
-    const res = await apiBuilder.tryGetVideosById(
-      apiEntity.movieById,
-      movie.id,
-      apiLanguage.language
-    );
-    return res;
+    if (movie) {
+      const res = await apiBuilder.tryGetVideosById(
+        apiEntity.movieById,
+        movie.id,
+        apiLanguage.language
+      );
+      return res;
+    }
   };
 
-  const getRandomMovie = () => {
-    if (!error && movies.length === 0) {
+  const getRandomMovie = async () => {
+    if (isLoading && movies.length === 0) {
       return;
     } else {
       const randomMovie = movies[randomIndex(0, movies.length - 1)];
-      setSelectedMovie(randomMovie);
-      setBannerImage(backgroundImage(selectedMovie));
-      const selectedMovieVideos = movieVideos(selectedMovie);
 
-      const movieVideosIds = [];
-      for (let video of Object.entries(selectedMovieVideos)) {
+      setSelectedMovie(randomMovie);
+
+      const res = await backgroundImage(randomMovie);
+
+      setBannerImage(res);
+    }
+  };
+
+  const setVideo = async () => {
+    const selectedMovieVideos = await movieVideos(selectedMovie);
+
+    if (selectedMovieVideos.length > 0) {
+      const movieVideosIds = selectedMovieVideos.map((video) => {
         if (video.site === "YouTube") {
-          movieVideosIds.push(video.key);
+          return video.key;
         }
-      }
+      });
+
       setBannerVideos(movieVideosIds);
+    } else {
+      setBannerVideos([]);
     }
   };
 
   useEffect(() => {
+    if (!isLoading && movies.length > 0) {
+      setVideo();
+    }
+  }, [selectedMovie]);
+
+  useEffect(() => {
     getRandomMovie();
-  }, [movies]);
+  }, [movies, isLoading]);
+
   return [bannerVideos, bannerImage, isLoading];
 };
 
 export default useBanner;
 
-      /*       movieVideos.forEach(video => {
+/*       movieVideos.forEach(video => {
         if (video.site === "YouTube") {
             movieVideosIds.push(video.key);
         }

@@ -5,9 +5,13 @@ import { apiLanguage } from "../apiConfig/apiConfig";
 const MAX_PAGINATION = 1000;
 const MIN_PAGINATION = 1;
 
-const useApi = (entity, lang = apiLanguage.spanish, pagination = MIN_PAGINATION) => {
+const useApi = (
+  entity,
+  lang = apiLanguage.spanish,
+  pagination = MIN_PAGINATION
+) => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(pagination);
   const [language, setLanguage] = useState(lang);
@@ -31,18 +35,26 @@ const useApi = (entity, lang = apiLanguage.spanish, pagination = MIN_PAGINATION)
   }, [page]);
 
   const nextPage = () => {
-    (page < MAX_PAGINATION) ? setPage(page + 1) : setPage(MIN_PAGINATION);
-  }
+    page < MAX_PAGINATION ? setPage(page + 1) : setPage(MIN_PAGINATION);
+  };
 
   const previousPage = () => {
     page > MIN_PAGINATION ? setPage(page - 1) : setPage(MAX_PAGINATION);
-  }
+  };
 
   const changeLanguage = (newLanguage) => {
     setLanguage(apiLanguage.newLanguage);
-  }
+  };
 
-  return [movies, isLoading, error, nextPage, previousPage, language, changeLanguage];
+  return [
+    movies,
+    isLoading,
+    error,
+    nextPage,
+    previousPage,
+    language,
+    changeLanguage,
+  ];
 };
 
 export default useApi;

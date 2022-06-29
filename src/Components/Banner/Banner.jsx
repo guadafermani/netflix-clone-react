@@ -5,19 +5,20 @@ import Video from "./hooks/useVideo";
 
 const Banner = () => {
   const [bannerVideos, bannerImage, isLoading] = useBanner();
+  console.log(bannerImage);
 
   return (
     <div
       className={`${styles.banner_container}`}
       style={
-        isLoading || bannerVideos.length !== 0
+        isLoading || bannerVideos.length > 1
           ? { backgroundImage: "none" }
           : {
               backgroundImage: `url(${bannerImage})`,
             }
       }
     >
-      <Video ids={bannerVideos} />
+      {!isLoading && bannerVideos.length > 1 && <Video ids={bannerVideos} />}
       <div className={styles.banner_gradient}>
         <div>
           <div style={{ height: "350px" }}></div>
