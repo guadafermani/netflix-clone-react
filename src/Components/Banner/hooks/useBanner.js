@@ -13,6 +13,8 @@ const useBanner = () => {
   const [bannerImage, setBannerImage] = useState(null);
   const [bannerVideos, setBannerVideos] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [title, setTitle] = useState(null)
+  const [description, setDescription] = useState(null)
 
   const backgroundImage = async (movie) => {
     const res = await apiBuilder.tryGetImage(
@@ -38,11 +40,15 @@ const useBanner = () => {
       return;
     } else {
       const randomMovie = movies[randomIndex(0, movies.length - 1)];
-
       setSelectedMovie(randomMovie);
 
-      const res = await backgroundImage(randomMovie);
+      const title = randomMovie.title;
+      setTitle(title);
 
+      const description = randomMovie.overview;
+      setDescription(description);
+
+      const res = await backgroundImage(randomMovie);
       setBannerImage(res);
     }
   };
@@ -73,7 +79,7 @@ const useBanner = () => {
     getRandomMovie();
   }, [movies, isLoading]);
 
-  return [bannerVideos, bannerImage, isLoading];
+  return [bannerVideos, bannerImage, title, description, isLoading];
 };
 
 export default useBanner;

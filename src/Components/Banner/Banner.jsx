@@ -4,8 +4,7 @@ import useBanner from "./hooks/useBanner";
 import Video from "./hooks/useVideo";
 
 const Banner = () => {
-  const [bannerVideos, bannerImage, isLoading] = useBanner();
-  console.log(bannerImage);
+  const [bannerVideos, bannerImage, title, description, isLoading] = useBanner();
 
   return (
     <div
@@ -18,13 +17,17 @@ const Banner = () => {
             }
       }
     >
-      {!isLoading && bannerVideos.length > 1 && <Video ids={bannerVideos} />}
+      {!isLoading && bannerVideos.length > 0 && <Video ids={bannerVideos} />}
       <div className={styles.banner_gradient}>
         <div>
           <div style={{ height: "350px" }}></div>
         </div>
         <div className={styles.banner_title}>
-          <h1>Banner</h1>
+          <h1>{title}</h1>
+        </div>
+
+        <div className={styles.banner_description}>
+          <p>{description}</p>
         </div>
 
         <div className={styles.banner_buttons}>
