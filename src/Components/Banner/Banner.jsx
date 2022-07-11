@@ -20,7 +20,7 @@ const Banner = () => {
     >
       {!isLoading && bannerVideos.length > 0 && <Video ids={bannerVideos} />}
       <div className={styles.banner_gradient}>
-      <Separator height={"350px"}/>
+      <Separator height={"280px"}/>
 
         <div className={styles.banner_title}>
           <h1>{title}</h1>
