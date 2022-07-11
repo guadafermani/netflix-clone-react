@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Banner.module.css";
 import useBanner from "./hooks/useBanner";
 import Video from "./hooks/useVideo";
+import Separator from "../Separator/Separator"
 
 const Banner = () => {
   const [bannerVideos, bannerImage, title, description, isLoading] = useBanner();
@@ -19,9 +20,8 @@ const Banner = () => {
     >
       {!isLoading && bannerVideos.length > 0 && <Video ids={bannerVideos} />}
       <div className={styles.banner_gradient}>
-        <div>
-          <div style={{ height: "350px" }}></div>
-        </div>
+      <Separator height={"350px"}/>
+
         <div className={styles.banner_title}>
           <h1>{title}</h1>
         </div>
