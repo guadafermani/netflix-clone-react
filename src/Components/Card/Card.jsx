@@ -10,7 +10,7 @@ const Card = (value) => {
 
   const backgroundImage = async (value) => {
     const res = await apiBuilder.tryGetImage(
-      value.backdrop_path,
+      value.poster_path,
       apiQuality.posterMedium
     );
     return res;

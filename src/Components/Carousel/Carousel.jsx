@@ -23,9 +23,9 @@ const Carousel = ({entity, title}) => {
     </div>
     <Separator height={40}/>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={10}
         spaceBetween={5}
-        slidesPerGroup={5}
+        slidesPerGroup={10}
         loop={true}
         loopFillGroupWithBlank={false}
         pagination={{
