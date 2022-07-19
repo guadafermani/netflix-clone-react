@@ -8,6 +8,7 @@ https://user-images.githubusercontent.com/68677672/179834688-314ec8a4-1834-4570-
  - Axios
  - TMDB API
  - Swiper
+ - react-youtube
 
 # Getting Started with Create React App
 
