@@ -1,3 +1,14 @@
+# Netflix Landing Page Clone 
+
+https://user-images.githubusercontent.com/68677672/179834688-314ec8a4-1834-4570-986a-98ed0678f8ad.mov
+
+## Technologies
+
+ - ReactJs
+ - Axios
+ - TMDB API
+ - Swiper
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
